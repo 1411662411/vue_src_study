@@ -13,25 +13,33 @@ class Compile {
         while (child=this.el.firstChild) {
             this._compile(child)
             frag.appendChild(child)     //节点移动，而非复制
+          
         }
         return frag 
     }
     _compile(node){
         if(node.nodeType===1){
-
+             var attr=node.attributes;
+             var _this=this;
+             if(attr.hasOwnProperty("v-model")){
+                 var name=attr["v-model"].nodeValue;
+                 node.addEventListener("input",function (e) {
+                     _this.vm[name]=e.target.value ;
+                 })
+                 console.log(name,"1")
+                 new Watcher(node, name, this.vm)
+                //  node.value=this.vm[name];          
+             }
         }
         if(node.nodeType===3){
             if(REG.test(node.nodeValue)){
-                // var name=RegExp.$1
-                // console.log(node.nodeValue)
-                
-                // name=name.trim()
-                name ="message"
-                
-                console.log(name)
+                var name=RegExp.$1  
+                name=name.trim()            
+                console.log(name, "2")
                new Watcher(node,name,this.vm)
             }
         }
+        
     }
 }
 

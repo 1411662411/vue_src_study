@@ -7,8 +7,9 @@ class Dep{
         this.list.push(sub)
     }
     notify(){
-        this.list.forEach(function  (v ) {
-            v.updata();
+        this.list.forEach(function (v) {
+            console.log(v)
+            v.update();
         })
     }
 }

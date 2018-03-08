@@ -10,9 +10,12 @@ class Watcher {
         
     }
     update(){
-        this.node.nodeValue=this.vm[name]
-        console.log(this.node.nodeValue)
-        console.log(this.vm["message"])
+        if(this.node.nodeType===1){
+            this.node.value=this.vm[this.name]
+        }
+        if (this.node.nodeType ===3) {
+            this.node.nodeValue = this.vm[this.name]
+        }
     }
 }
 

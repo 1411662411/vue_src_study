@@ -17,7 +17,7 @@ class Observer {
             set(newValue){
                 if(newValue===val)return    
                 val=newValue                 
-                myDep.nofify()              //发布信息
+                myDep.notify()              //发布信息
             }
         })
     }
